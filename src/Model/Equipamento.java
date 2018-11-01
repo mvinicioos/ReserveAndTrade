@@ -28,6 +28,7 @@ public class Equipamento extends Recurso {
         return modelo;
     }
 
+
     //---------------------------------------------- [VALIDADORES]
 
     /**
@@ -35,7 +36,7 @@ public class Equipamento extends Recurso {
      * > Verifica se o dado não é vazio.
      * @return TRUE em caso de marca validada
      */
-    public boolean validaMarcaEquipamento(){
+    public boolean validaMarca(){
         boolean marcaValidada = true;
         if (this.getMarca().length() == 0){
             marcaValidada = false;
@@ -49,7 +50,7 @@ public class Equipamento extends Recurso {
      * > Verifica se o nome não é vazio
      * @return TRUE em caso de modelo validado.
      */
-    public boolean validaModeloEquipamento(){
+    public boolean validaModelo(){
         boolean modeloValidado = true;
         if(this.getModelo().length() == 0){
             modeloValidado = false;
@@ -62,6 +63,8 @@ public class Equipamento extends Recurso {
 
     /**
      * Apenas insere os dados no banco sem fazer validação.
+     * 1º Instanciar um objeto Equiamento
+     * 2º executar o método sqlInsereEquipamento()
      * @return TRUE caso dados inseridos
      */
     public boolean sqlInsereEquipamento() {
@@ -71,7 +74,7 @@ public class Equipamento extends Recurso {
         try{
             if(bancoDeDados.iniciaConexaoComBanco()) {
                 PreparedStatement stm2 = bancoDeDados.getConexao().prepareStatement("INSERT INTO hpoa_recursos VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                stm2.setString(1, Integer.toString(this.getCodigoDeId()));
+                stm2.setString(1, null); //AUTO_INCREMENT
                 stm2.setString(2, this.getNome()); //Nome
                 stm2.setString(3, "0"); //tipo
                 stm2.setString(4, this.getMarca()); //e_marca
@@ -92,5 +95,7 @@ public class Equipamento extends Recurso {
 
         return equipamentoInserido;
     }
+
+
 
 }

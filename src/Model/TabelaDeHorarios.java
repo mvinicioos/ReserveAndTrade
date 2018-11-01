@@ -22,7 +22,7 @@ public class TabelaDeHorarios {
     public ArrayList<Data> getHorariosDeRecurso(Recurso recurso) {
         ArrayList<Data> current = new ArrayList<>();
         for (Reserva r : this.reservas) {
-            if (r.getRecursoReservado().getCodigoDeId() == recurso.getCodigoDeId()) {
+            if (r.getRecursoReservado().getIdentificacao() == recurso.getIdentificacao()) {
                 current.add(r.getHorario());
             }
         }

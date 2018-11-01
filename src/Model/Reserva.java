@@ -24,7 +24,7 @@ public class Reserva {
     }
 
     public boolean temConflito(Reserva outro) {
-        if (this.recursoReservado.getCodigoDeId() == outro.recursoReservado.getCodigoDeId()) {
+        if (this.recursoReservado.getIdentificacao() == outro.recursoReservado.getIdentificacao()) {
             if (this.horario.temConflito(outro.getHorario())) {
                 return true;
             }
