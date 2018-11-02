@@ -38,8 +38,9 @@ public class CadastroSala extends ModeloDialog {
     //Ações
     private ValidaFormulario validaCadastro = new ValidaFormulario();
 
+    public CadastroSala(){
+        super("Cadastrar Sala", 500, 235);
 
-    public void iniciar(){
         //Adicionando componentes
         this.add(this.jbLimpar);
         this.add(this.jbCadastrar);
@@ -50,12 +51,8 @@ public class CadastroSala extends ModeloDialog {
         this.add(this.campoCorredor);
         this.add(this.campoAndar);
 
-        //Preparando o JDialog
-        this.setTamanho(this.larguraDialog,this.alturaDialog);
-        this.mostrarInterface();
 
         //Labels
-        this.setTitulo(this.txtBarraTitulo);
         this.labelTituloCadastroSala.setCorCinza();
         this.labelTituloCadastroSala.centralizarTexto();
         this.labelMensagemRetornoSala.centralizarTexto();
@@ -80,6 +77,8 @@ public class CadastroSala extends ModeloDialog {
         this.jbLimpar.addMouseListener(validaCadastro);
         this.jbCadastrar.addMouseListener(validaCadastro);
     }
+
+
 
 
     private class ValidaFormulario implements MouseListener{

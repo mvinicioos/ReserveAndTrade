@@ -23,7 +23,7 @@ public class GerenciarRecursos extends ModeloDialog {
     //Labels
     private ModeloLabel labelTitulo         = new ModeloLabel(this.txtTitulo, 17, this.larguraDialog, 0,5);
     private ModeloLabel labelTituloTabela   = new ModeloLabel(this.txtTituloTabela, 17, this.larguraDialog, 0,100);
-
+    private ModeloLabel labelPesquisa       = new ModeloLabel("teste", 15, this.larguraDialog, 0, 130);
     //Campos de Texto
     private ModeloCampoTexto campoPesquisar = new ModeloCampoTexto(30, this.larguraDialog-50-35, 25,50);
 
@@ -35,31 +35,38 @@ public class GerenciarRecursos extends ModeloDialog {
     //Ações
     private AcoesInterface acoesInterface = new AcoesInterface();
 
+
+    //Contrutor
+    public GerenciarRecursos(String titulo, int largura, int altura){
+        super(titulo, largura, altura);
+    }
+
     public void iniciar(){
         //Adicionando ao JDialog
         this.add(this.labelTitulo);
         this.add(this.campoPesquisar);
         this.add(this.jbPesquisar);
         this.add(this.labelTituloTabela);
-        this.add(this.tabela);
+        //this.add(this.tabela);
+        this.add(this.labelPesquisa);
 
-        this.tabela.addColumn(new TableColumn(1,100));
-        this.tabela.preencheLinha(this.vetorColunas, 1);
+        //Tabela
+        //this.tabela.addColumn(new TableColumn(1,100));
+        //this.tabela.preencheLinha(this.vetorColunas, 1);
 
-        //Definindo JDialog
-        this.setTamanho(this.larguraDialog, this.alturaDialog);
-        this.setTitulo(this.txtTituloBarra);
-        this.mostrarInterface();
 
         //Labels
         this.labelTitulo.setCorCinza();
         this.labelTitulo.centralizarTexto();
         this.labelTituloTabela.setCorCinza();
         this.labelTituloTabela.centralizarTexto();
-
+        this.labelPesquisa.setCorCinza();
+        this.labelPesquisa.centralizarTexto();
         //Campos de preenchimento
         this.campoPesquisar.setRotulo(true, this.txtRotuloCampoPesquisar);
         this.campoPesquisar.addMouseListener(this.acoesInterface);
+
+        this.exibirCaixaDialog();
     }
 
     private class AcoesInterface implements MouseListener{

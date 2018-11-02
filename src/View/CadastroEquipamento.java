@@ -1,5 +1,6 @@
 package View;
 
+import Model.Equipamento;
 import Model.UsuarioAdministrador;
 import sun.util.calendar.JulianCalendar;
 
@@ -38,7 +39,10 @@ public class CadastroEquipamento extends ModeloDialog{
     //AÇões
     private ValidaFormulario validaFormulario = new ValidaFormulario();
 
-    public void iniciar(){
+    //COnstrutor
+    public CadastroEquipamento(){
+        super("Cadastrar Equipamento", 500, 195);
+
         //Adicionando ao Jdialog
         this.add(this.labelTitulo);
         this.add(this.labelMsgCadastro);
@@ -47,11 +51,6 @@ public class CadastroEquipamento extends ModeloDialog{
         this.add(this.campoModelo);
         this.add(this.jbLimpar);
         this.add(this.jbCadastrar);
-
-        //Definindo o Jdialog
-        this.setTamanho(this.largura, this.altura);
-        this.setTitulo(this.txtTituloBarra);
-        this.mostrarInterface();
 
         //Labels
         this.labelTitulo.setCorCinza();
@@ -71,8 +70,8 @@ public class CadastroEquipamento extends ModeloDialog{
         this.jbCadastrar.addMouseListener(this.validaFormulario);
         this.jbLimpar.addMouseListener(this.validaFormulario);
 
-
     }
+
 
     private class ValidaFormulario implements MouseListener{
 

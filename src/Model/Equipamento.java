@@ -7,17 +7,12 @@ import java.util.Date;
 
 public class Equipamento extends Recurso {
     private String marca, modelo;
-    private  Date garantia;
 
-    public Equipamento(int id, String n, String m, String mo, Date g) {
+    public Equipamento(int id, String n, String m, String mo) {
         super(id, n);
         this.marca = m;
         this.modelo = mo;
-        this.garantia = g;
-    }
 
-    public Date getGarantia() {
-        return garantia;
     }
 
     public String getMarca() {

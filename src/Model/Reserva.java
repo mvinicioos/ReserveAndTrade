@@ -9,6 +9,7 @@ public class Reserva {
         this.reservante = user;
         this.recursoReservado = rec;
         this.horario = d;
+
     }
 
     public Data getHorario() {

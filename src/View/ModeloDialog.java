@@ -7,22 +7,18 @@ public class ModeloDialog extends JDialog {
 
     private final String corFundo = "#2E2E2E";
 
-    public ModeloDialog(){
-        this.setLocationRelativeTo(null);
+    public ModeloDialog(String titulo, int largura, int altura){
+        this.setTitle(titulo);
+        this.setSize(largura, altura);
         this.setResizable(false);
         this.setLayout(null);
         this.getContentPane().setBackground(Color.decode(corFundo));
+        this.setLocationRelativeTo(null);
+
     }
 
-    public void setTamanho(int largura, int altura){
-        this.setSize(largura, altura);
-    }
-
-    public void setTitulo(String titulo){
-        this.setTitle(titulo);
-    }
-
-    public void mostrarInterface(){
+    public void exibirCaixaDialog(){
         this.setVisible(true);
     }
+
 }

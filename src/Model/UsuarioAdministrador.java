@@ -59,7 +59,7 @@ public class UsuarioAdministrador extends Usuario {
      */
     public String cadastrarEquipamento(int id, String nome, String marca, String modelo){
         String msgRetorno = "";
-        Equipamento novoEquipamento = new Equipamento(id, nome, marca, modelo, null);
+        Equipamento novoEquipamento = new Equipamento(id, nome, marca, modelo);
 
         msgRetorno = novoEquipamento.sqlInsereEquipamento();
 
