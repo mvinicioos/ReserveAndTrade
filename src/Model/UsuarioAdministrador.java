@@ -36,13 +36,13 @@ public class UsuarioAdministrador extends Usuario {
 
         Sala novaSala = new Sala(id, nome, andar, corredor, numeroSala);
         boolean cadastroAutorizado = novaSala.validaSala();
-        String mensagemRetorno = "Cadastro realizado com sucesso !";
+        String mensagemRetorno = "";
 
         //Insere no banco
         if(cadastroAutorizado == true){
-            novaSala.sqlInsereSala();
+            mensagemRetorno = novaSala.sqlInsereSala(); 
         }else{
-            mensagemRetorno = "Sala duplicada !";
+            mensagemRetorno = "Sala já existe";
         }
 
         return mensagemRetorno;
@@ -57,27 +57,14 @@ public class UsuarioAdministrador extends Usuario {
      * @param modelo
      * @return
      */
-    public boolean cadastrarEquipamento(int id, String nome, String marca, String modelo){
-
+    public String cadastrarEquipamento(int id, String nome, String marca, String modelo){
+        String msgRetorno = "";
         Equipamento novoEquipamento = new Equipamento(id, nome, marca, modelo, null);
-        boolean cadastroAutorizado = true;
 
-        if(!novoEquipamento.validaRecursoNome()){
-            cadastroAutorizado = false;
-        }else if(!novoEquipamento.validaMarca()){
-            cadastroAutorizado = false;
-        }else if(!novoEquipamento.validaModelo()){
-            cadastroAutorizado = false;
-        }
+        msgRetorno = novoEquipamento.sqlInsereEquipamento();
 
-        //Insere no banco
-        if(cadastroAutorizado == true){
-            novoEquipamento.sqlInsereEquipamento();
-            System.out.println("Equipamento cadastrado com sucesso !");
 
-        }
-
-        return cadastroAutorizado;
+        return msgRetorno;
     }
 
     public boolean inativarRecurso(int id){
