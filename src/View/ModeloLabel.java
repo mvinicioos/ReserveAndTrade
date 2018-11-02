@@ -32,5 +32,7 @@ public class ModeloLabel extends JLabel {
     public void setCorVermelho(){
         this.setForeground(Color.RED);
     }
-
+    public void centralizarTexto(){
+        this.setHorizontalAlignment(SwingConstants.CENTER);
+    }
 }

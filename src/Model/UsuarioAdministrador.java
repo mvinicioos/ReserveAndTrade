@@ -40,7 +40,7 @@ public class UsuarioAdministrador extends Usuario {
 
         //Insere no banco
         if(cadastroAutorizado == true){
-            mensagemRetorno = novaSala.sqlInsereSala(); 
+            mensagemRetorno = novaSala.sqlInsereSala();
         }else{
             mensagemRetorno = "Sala já existe";
         }

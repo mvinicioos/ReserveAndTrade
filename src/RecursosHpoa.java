@@ -4,11 +4,13 @@ import View.*;
 public class RecursosHpoa {
     public static void main(String[] args) {
         CadastroSala sala = new CadastroSala();
-        CadastroEquipamento usuario = new CadastroEquipamento();
+        CadastroEquipamento novoEquipamento = new CadastroEquipamento();
+        GerenciarRecursos gerenciar = new GerenciarRecursos();
+
         UsuarioAdministrador adm = new UsuarioAdministrador(1,"marcos", "silva", "msss@hot.com", "123",1);
 
-        //usuario.iniciar();
-        sala.iniciar();
-
+        //novoEquipamento.iniciar();
+        //sala.iniciar();
+        gerenciar.iniciar();
     }
 }

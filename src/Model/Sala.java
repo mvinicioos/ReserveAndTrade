@@ -36,14 +36,13 @@ public class Sala extends Recurso {
      * Apenas insere no banco de dados, sem validar dados.
      * @return TRUE em caso de inserção válida.
      */
-    public boolean sqlInsereSala() {
+    public String sqlInsereSala() {
         Banco bancoDeDados = new Banco();
-        boolean equipamentoInserido = true;
+        String txtEquipamentoInserido = "";
 
         try{
             if(bancoDeDados.iniciaConexaoComBanco()) {
                 PreparedStatement stm2 = bancoDeDados.getConexao().prepareStatement("INSERT INTO hpoa_recursos VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                //stm2.setString(1, null); //AUTO_INCREMENT
                 stm2.setString(1, this.getNome()); //Nome
                 stm2.setString(2, "1"); //tipo
                 stm2.setString(3, null); //e_marca
@@ -55,14 +54,15 @@ public class Sala extends Recurso {
                 stm2.setString(9,"1"); //recurso ativo
                 stm2.executeUpdate();
                 stm2.close();
+                txtEquipamentoInserido = "Sala cadastrada com sucesso";
             }
             bancoDeDados.encerraConexao();
         }catch (Exception e) {
-            equipamentoInserido = false;
+            txtEquipamentoInserido = "Problema com o banco de dados";
             e.printStackTrace();
         }
 
-        return equipamentoInserido;
+        return txtEquipamentoInserido;
     }
 
     /**

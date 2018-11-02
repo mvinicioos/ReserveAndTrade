@@ -24,14 +24,6 @@ public abstract class Recurso {
         return nome;
     }
 
-    public boolean validaRecursoNome(){
-        boolean validaNome = true;
-        if(this.getNome().length() == 0){
-            validaNome = false;
-            System.out.println("Erro ! Nome inválido.");
-        }
-        return validaNome;
-    }
 
 
 

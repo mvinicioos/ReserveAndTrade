@@ -2,151 +2,146 @@ package View;
 
 import Model.UsuarioAdministrador;
 
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class CadastroSala extends ModeloDialog {
-    //Constantes para cadastro
-    private final int tipoRecurso = 1;
-    private final int recursoAtivo = 1;
 
-    //Constantes JDialog
+    //Constantes mensagens
+    private final String txtNomeSala        = "Nome";
+    private final String txtNumeroSala      = "Numero";
+    private final String txtAndarSala       = "Andar";
+    private final String txtCorredorSala    = "Corredor";
+    private final String txtBarraTitulo     = "Cadastro Sala";
+    private final String txtTitulo          = "Nova Sala";
+
+
+    //Propriedades JDialog
     private final int larguraDialog = 500;
-    private final int alturaDialog = 250;
-    private final String titulo = "Cadastro Recurso";
+    private final int alturaDialog  = 235;
 
-    //COnstantes JText
-    private final int txtCampoAltura = 30;
-    private final String campoNomeSala = "Nome da Sala";
-    private final String campoIdentificacaoSala = "Identificação";
-    private final String campoAndar = "Andar";
-    private final String campoCorredor = "Corredor";
-    private final String campoNomeErro = "Insira um NOME válido";
-
-    //COnstantes JPanel cadastro de sala
-    private final int alturaPainel = 300;
-    private final int larguraPainel = 490;
-    private final int coordenadaXPainel = 5;
-    private final int coordenadaYPainel = 5;
-    //Painéis
-    private ModeloPainel painelCadastroSala = new ModeloPainel(true, this.larguraPainel, this.alturaPainel, coordenadaXPainel, coordenadaYPainel);
-    private ModeloPainel painelCadastroEquip = new ModeloPainel(true, this.larguraPainel, this.alturaPainel, 5, 210 );
 
     //Labels
-    private ModeloLabel tituloCadastroSala = new ModeloLabel("CADASTRO DE SALA",17, 200, 10,5 );
-    private ModeloLabel mensagemRetornoSala = new ModeloLabel("teste",          15, 300,  200, 25);
-    //Components para o cadastro de sala
-    private ModeloCampoTexto txtNome = new ModeloCampoTexto(            30,200,10,45);
-    private ModeloCampoTexto txtIdentificacao = new ModeloCampoTexto(   30,200,10,80);
-    private ModeloCampoTexto txtCorredor = new ModeloCampoTexto(        30,200,10,115);
-    private ModeloCampoTexto txtAndar = new ModeloCampoTexto(           30,200,10,150);
+    private ModeloLabel labelTituloCadastroSala  = new ModeloLabel(this.txtTitulo,17, this.larguraDialog, 0,5 );
+    private ModeloLabel labelMensagemRetornoSala = new ModeloLabel("",     15, this.larguraDialog,  0, 25);
+
+    //Campos
+    private ModeloCampoTexto campoNome          = new ModeloCampoTexto(30,200,10,50);
+    private ModeloCampoTexto campoIdentificacao = new ModeloCampoTexto(30,200,10,85);
+    private ModeloCampoTexto campoCorredor      = new ModeloCampoTexto(30,200,10,120);
+    private ModeloCampoTexto campoAndar         = new ModeloCampoTexto(30,200,10,155);
 
     //Botões
-    private ModeloBotao jbLimpar = new ModeloBotao      ("Limpar",      30,150, 120, 190);
-    private ModeloBotao jbCadastrar = new ModeloBotao   ("Cadastrar",   30,150, 280, 190);
+    private ModeloBotao jbLimpar    = new ModeloBotao("Limpar", 120, 195);
+    private ModeloBotao jbCadastrar = new ModeloBotao("Cadastrar",280, 195);
 
-    //Actions
-    private LimpaFormulario limpa = new LimpaFormulario();
+    //Ações
+    private ValidaFormulario validaCadastro = new ValidaFormulario();
 
 
     public void iniciar(){
+        //Adicionando componentes
+        this.add(this.jbLimpar);
+        this.add(this.jbCadastrar);
+        this.add(this.labelTituloCadastroSala);
+        this.add(this.labelMensagemRetornoSala);
+        this.add(this.campoNome);
+        this.add(this.campoIdentificacao);
+        this.add(this.campoCorredor);
+        this.add(this.campoAndar);
+
         //Preparando o JDialog
         this.setTamanho(this.larguraDialog,this.alturaDialog);
         this.mostrarInterface();
 
         //Labels
-        this.setTitulo(this.titulo);
-        this.tituloCadastroSala.setCorCinza();
-        this.add(this.tituloCadastroSala);
-
-        this.add(this.mensagemRetornoSala);
-        this.mensagemRetornoSala.setCorCinza();
-        this.mensagemRetornoSala.ocultarLabel();
-
-        //inserindo campos no painel cadastro de sala
-        this.add(this.txtNome);
-        this.txtNome.setRotulo(true, this.campoNomeSala);
-        this.txtNome.addMouseListener(limpa);
-
-        this.add(this.txtIdentificacao);
-        this.txtIdentificacao.setRotulo(true, this.campoIdentificacaoSala);
-        this.txtIdentificacao.addMouseListener(limpa);
-
-        this.add(this.txtCorredor);
-        this.txtCorredor.setRotulo(true,this.campoCorredor);
-        this.txtCorredor.addMouseListener(limpa);
-
-        this.add(this.txtAndar);
-        this.txtAndar.setRotulo(true, this.campoAndar);
-        this.txtAndar.addMouseListener(limpa);
-
-        this.jbLimpar.addMouseListener(limpa);
-        this.jbCadastrar.addMouseListener(limpa);
-        this.add(this.jbLimpar);
-        this.add(this.jbCadastrar);
+        this.setTitulo(this.txtBarraTitulo);
+        this.labelTituloCadastroSala.setCorCinza();
+        this.labelTituloCadastroSala.centralizarTexto();
+        this.labelMensagemRetornoSala.centralizarTexto();
+        this.labelMensagemRetornoSala.setCorCinza();
+        this.labelMensagemRetornoSala.ocultarLabel();
 
 
+        //JTextFIeld
+        this.campoNome.setRotulo(true, this.txtNomeSala);
+        this.campoNome.addMouseListener(validaCadastro);
+
+        this.campoIdentificacao.setRotulo(true, this.txtNumeroSala);
+        this.campoIdentificacao.addMouseListener(validaCadastro);
+
+        this.campoCorredor.setRotulo(true,this.txtCorredorSala);
+        this.campoCorredor.addMouseListener(validaCadastro);
+
+        this.campoAndar.setRotulo(true, this.txtAndarSala);
+        this.campoAndar.addMouseListener(validaCadastro);
+
+        //Jbuttons
+        this.jbLimpar.addMouseListener(validaCadastro);
+        this.jbCadastrar.addMouseListener(validaCadastro);
     }
 
 
-    private class LimpaFormulario implements MouseListener{
+    private class ValidaFormulario implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
             String mensagem = "";
 
-            if (e.getComponent() == txtNome) {
-                txtNome.limparCampo(campoNomeSala);
-                txtNome.setCorFontPadrao();
-            } else if (e.getComponent() == txtIdentificacao) {
-                txtIdentificacao.limparCampo(campoIdentificacaoSala);
-                txtIdentificacao.setCorFontPadrao();
-            } else if (e.getComponent() == txtAndar) {
-                txtAndar.limparCampo(campoAndar);
-                txtAndar.setCorFontPadrao();
-            } else if (e.getComponent() == txtCorredor) {
-                txtCorredor.limparCampo(campoCorredor);
-                txtCorredor.setCorFontPadrao();
+            //Limpa campo ao clicar
+            if (e.getComponent() == campoNome) {
+                campoNome.limparCampo(txtNomeSala);
+                campoNome.setCorFontPadrao();
+            } else if (e.getComponent() == campoIdentificacao) {
+                campoIdentificacao.limparCampo(txtNumeroSala);
+                campoIdentificacao.setCorFontPadrao();
+            } else if (e.getComponent() == campoAndar) {
+                campoAndar.limparCampo(txtAndarSala);
+                campoAndar.setCorFontPadrao();
+            } else if (e.getComponent() == campoCorredor) {
+                campoCorredor.limparCampo(txtCorredorSala);
+                campoCorredor.setCorFontPadrao();
             } else if (e.getComponent() == jbLimpar) {
-                txtNome.setText("");
-                txtNome.setCorFontPadrao();
-                txtCorredor.setText("");
-                txtCorredor.setCorFontPadrao();
-                txtAndar.setText("");
-                txtAndar.setCorFontPadrao();
-                txtIdentificacao.setText("");
-                txtIdentificacao.setCorFontPadrao();
+
+                campoNome.setText(txtNomeSala);
+                campoNome.setCorFontPadrao();
+                campoCorredor.setText(txtCorredorSala);
+                campoCorredor.setCorFontPadrao();
+                campoAndar.setText(txtAndarSala);
+                campoAndar.setCorFontPadrao();
+                campoIdentificacao.setText(txtNumeroSala);
+                campoIdentificacao.setCorFontPadrao();
 
             } else if (e.getComponent() == jbCadastrar) {
-                if (txtNome.getText().equals(campoNomeSala) || txtNome.getText().equals("")) {
-                    txtNome.setRotulo(campoNomeSala, true);
+                if (campoNome.getText().equals(txtNomeSala) || campoNome.getText().equals("")) {
+                    campoNome.setRotulo(txtNomeSala, true);
 
-                } else if (txtIdentificacao.getText().equals(campoIdentificacaoSala) || txtIdentificacao.getText().equals("")) {
-                    txtIdentificacao.setRotulo(campoIdentificacaoSala, true);
-                } else if (txtCorredor.getText().equals(campoCorredor) || txtCorredor.getText().equals("")) {
-                    txtCorredor.setRotulo(campoCorredor, true);
-                } else if (txtAndar.getText().equals(campoAndar) || txtAndar.getText().equals("")) {
-                    txtAndar.setRotulo(campoAndar, true);
+                } else if (campoIdentificacao.getText().equals(txtNumeroSala) || campoIdentificacao.getText().equals("")) {
+                    campoIdentificacao.setRotulo(txtNumeroSala, true);
+                } else if (campoCorredor.getText().equals(txtCorredorSala) || campoCorredor.getText().equals("")) {
+                    campoCorredor.setRotulo(txtCorredorSala, true);
+                } else if (campoAndar.getText().equals(txtAndarSala) || campoAndar.getText().equals("")) {
+                    campoAndar.setRotulo(txtAndarSala, true);
                 } else {
                     //Administrador da sessão logada efetua o cadastro da sala
                     UsuarioAdministrador adm = new UsuarioAdministrador(1, "marcos", "silva", "msss@hot.com", "123", 1);
 
                     //Solicita cadastro
                     mensagem = adm.cadastrarSala(1,
-                            txtNome.getText(),
-                            Integer.parseInt(txtAndar.getText()),
-                            Integer.parseInt(txtCorredor.getText()),
-                            Integer.parseInt(txtIdentificacao.getText()));
+                            campoNome.getText(),
+                            Integer.parseInt(campoAndar.getText()),
+                            Integer.parseInt(campoCorredor.getText()),
+                            Integer.parseInt(campoIdentificacao.getText()));
 
                     //Exibe o resultado da solicitação
-                    mensagemRetornoSala.setText(mensagem);
-                    mensagemRetornoSala.mostrarLabel();
+                    labelMensagemRetornoSala.setText(mensagem);
+                    labelMensagemRetornoSala.mostrarLabel();
+
                     //Preenche novamente os campos com os valores padrões
-                    txtNome.setRotulo(true, campoNomeSala);
-                    txtIdentificacao.setRotulo(true, campoIdentificacaoSala);
-                    txtCorredor.setRotulo(true, campoCorredor);
-                    txtAndar.setRotulo(true, campoAndar);
+                    campoNome.setRotulo(true, txtNomeSala);
+                    campoIdentificacao.setRotulo(true, txtNumeroSala);
+                    campoCorredor.setRotulo(true, txtCorredorSala);
+                    campoAndar.setRotulo(true, txtAndarSala);
 
                 }
 
