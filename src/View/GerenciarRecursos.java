@@ -1,11 +1,17 @@
 package View;
 
+import Model.Recurso;
+import Model.Sala;
+import Model.Usuario;
+
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class GerenciarRecursos extends ModeloDialog {
+    Usuario user = new Usuario(1,"a","a","teste@jjj.com","123",1);
+
     //Mensagens
     private String txtTituloBarra           = "Gerenciador de Recursos";
     private String txtTitulo                = "Gerenciar Recursos";
@@ -23,7 +29,7 @@ public class GerenciarRecursos extends ModeloDialog {
     //Labels
     private ModeloLabel labelTitulo         = new ModeloLabel(this.txtTitulo, 17, this.larguraDialog, 0,5);
     private ModeloLabel labelTituloTabela   = new ModeloLabel(this.txtTituloTabela, 17, this.larguraDialog, 0,100);
-    private ModeloLabel labelPesquisa       = new ModeloLabel("teste", 15, this.larguraDialog, 0, 130);
+    private ModeloLabel labelPesquisa       = new ModeloLabel("tesaaate", 15, this.larguraDialog, 0, 130);
     //Campos de Texto
     private ModeloCampoTexto campoPesquisar = new ModeloCampoTexto(30, this.larguraDialog-50-35, 25,50);
 
@@ -37,11 +43,9 @@ public class GerenciarRecursos extends ModeloDialog {
 
 
     //Contrutor
-    public GerenciarRecursos(String titulo, int largura, int altura){
-        super(titulo, largura, altura);
-    }
+    public GerenciarRecursos(){
+        super("Gerenciar Recursos", 700, 500);
 
-    public void iniciar(){
         //Adicionando ao JDialog
         this.add(this.labelTitulo);
         this.add(this.campoPesquisar);
@@ -62,22 +66,48 @@ public class GerenciarRecursos extends ModeloDialog {
         this.labelTituloTabela.centralizarTexto();
         this.labelPesquisa.setCorCinza();
         this.labelPesquisa.centralizarTexto();
+        this.labelPesquisa.ocultarLabel();
+
         //Campos de preenchimento
         this.campoPesquisar.setRotulo(true, this.txtRotuloCampoPesquisar);
-        this.campoPesquisar.addMouseListener(this.acoesInterface);
 
-        this.exibirCaixaDialog();
+        //Botões
+        this.campoPesquisar.addMouseListener(acoesInterface);
+        this.jbPesquisar.addMouseListener(acoesInterface);
+
+
     }
+
+
+
+
 
     private class AcoesInterface implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if(campoPesquisar.getText().equals(txtRotuloCampoPesquisar)){
-                campoPesquisar.limparCampo(txtRotuloCampoPesquisar);
-                campoPesquisar.setCorFontPadrao();
-            }else if(e.getComponent() != campoPesquisar && campoPesquisar.getText().equals("") ){
-                campoPesquisar.setRotulo(true, txtRotuloCampoPesquisar);
+            if(e.getComponent() == campoPesquisar){
+                if(campoPesquisar.getText().equals(txtRotuloCampoPesquisar)){
+                    campoPesquisar.limparCampo(txtRotuloCampoPesquisar);
+                    campoPesquisar.setCorFontPadrao();
+                }
+            }else if(e.getComponent() == jbPesquisar) {
+                Sala recurso = (Sala) user.pesquisaRecurso(Integer.parseInt( campoPesquisar.getText() ));
+                if (recurso != null) {
+                    labelPesquisa.setText(
+                            Integer.toString(recurso.getIdentificacao()) + " " +
+                            recurso.getNome() + " "+
+                            Integer.toString(recurso.getSala()) + " " +
+                                    Integer.toString(recurso.getCorredor()) + " " +
+                                    Integer.toString(recurso.getAndar()) + " ");
+
+
+                }else{
+                    labelPesquisa.setText("Nada encontrado");
+                }
+
+                labelPesquisa.mostrarLabel();
+
             }
         }
 
