@@ -158,6 +158,47 @@ public class UsuarioAdministrador extends Usuario {
         return usuarioCadastrado;
     }
 
+    /**
+     * Verifica se um usuário qualquer é administrador ou não
+     * @param id
+     * @return
+     */
+    public boolean verificaPermissoes(int id){
+        Banco bancoDeDados        = new Banco();
+        boolean tipoAdministrador = false;
+        String sql = "SELECT *" +
+                "       FROM hpoa_usuarios " +
+                "       WHERE usuario_id = ?";
+        ResultSet result = null;
+
+        try {
+            if (bancoDeDados.iniciaConexaoComBanco()) {
+                PreparedStatement stm = bancoDeDados.getConexao().prepareStatement(sql);
+
+                stm.setString(1, Integer.toString(id));
+                result = stm.executeQuery();
+
+
+                //Cria a instancia do objeto de acordo com o id selecionado
+                if (result.next()) {
+                    if (Integer.parseInt(result.getString("usuario_situacao")) == 1) {
+                        if (Integer.parseInt(result.getString("usuario_tipo")) == 1) {
+
+                            tipoAdministrador = true;
+
+                        }
+                    }
+                }
+            }
+            result.close();
+            bancoDeDados.encerraConexao();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tipoAdministrador;
+    }
+
 }
 
 

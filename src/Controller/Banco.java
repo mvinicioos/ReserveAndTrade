@@ -8,11 +8,13 @@ import java.sql.Statement;
 
 
 public class Banco {
-    private final String host = "jdbc:mysql://db4free.net";
-    private final String porta = "3306";
-    private final String nomeDoBanco = "hpoarecursos";
-    private final String usuario = "engsoftgrupo2";
-    private final String senha = "engsoft20182";
+    private final String host           = "jdbc:mysql://localhost";
+    private final String porta          = "3306";
+    private final String nomeDoBanco    = "hpoarecursos";
+    private final String usuario        = "root";
+    private final String senha          = "root";
+    private final String url            = host+"/"+nomeDoBanco;
+
     private Connection conexao;
     private Statement stm;
     private ResultSet resultado;
