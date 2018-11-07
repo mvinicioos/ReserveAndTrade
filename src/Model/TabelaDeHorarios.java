@@ -1,42 +1,67 @@
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.LinkedList;
 
 public class TabelaDeHorarios {
-    private ArrayList<Reserva> reservas;
+    private AcessoReservas reservas;
+    private LinkedList<Reserva> espera;
 
     public TabelaDeHorarios() {
-        this.reservas = new ArrayList<>();
+        this.reservas = new AcessoReservasArrayListImp();
+        this.espera = new LinkedList<>();
     }
 
-    public boolean addHorario(Reserva novaReserva) {
-        for (Reserva r : this.reservas) {
-            if (r.temConflito(novaReserva)) {
-                return false;
+    public void addHorario(Reserva novaReserva) throws ConflitoHorarioException {
+        try {
+            this.reservas.addReserva(novaReserva);
+        }
+        catch (ConflitoHorarioException e) {
+            this.espera.addLast(e.getPedinte());
+            if (e.getConflitante().getReservante().pedeTroca(e.getPedinte())) {
+                this.fazTroca(e.getConflitante(), e.getPedinte());
             }
         }
-        this.reservas.add(novaReserva);
-        return true;
     }
 
-    public ArrayList<Data> getHorariosDeRecurso(Recurso recurso) {
-        ArrayList<Data> current = new ArrayList<>();
-        for (Reserva r : this.reservas) {
-            if (r.getRecursoReservado().getCodigoDeId() == recurso.getCodigoDeId()) {
-                current.add(r.getHorario());
+    public List<Data> getHorariosDeRecurso(Recurso recurso) {
+        return this.reservas.getReservasByRecurso(recurso);
+    }
+
+    public List<Data> getHorariosDeUser(Usuario user) {
+        return this.reservas.getReservasByUser(user);
+    }
+
+    public void removeReserva(Reserva r) {
+        this.reservas.removeReserva(r);
+        for (Reserva reserva : this.espera) {
+            if (reserva.temConflito(r)) {
+                try {
+                    this.reservas.addReserva(reserva);
+                } catch (ConflitoHorarioException e) {
+                    //This can never happen
+                } finally {
+                    this.espera.removeFirstOccurrence(reserva);
+                }
             }
         }
-        return current;
     }
 
-    public ArrayList<Data> getHorariosDeUser(Usuario user) {
-        ArrayList<Data> current = new ArrayList<>();
-        for (Reserva r : this.reservas) {
-            if (r.getReservante().getIdentificacao() == user.getIdentificacao()) {
-                current.add(r.getHorario());
-            }
+    public void fazTroca(Reserva sainte, Reserva entrante) {
+        this.reservas.removeReserva(sainte);
+        this.espera.remove(entrante);
+        try {
+            this.reservas.addReserva(entrante);
         }
-        return current;
+        catch (ConflitoHorarioException e) {
+            //this can never happen
+        }
+        finally {
+            this.espera.addLast(sainte);
+        }
     }
 
+    public Relatorio fazRelatorio() {
+        return new Relatorio(this.reservas.toList(), this.espera);
+    }
 }
