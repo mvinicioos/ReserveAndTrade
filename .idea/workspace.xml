@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b2cafea4-c89e-4ac3-a992-e7745cadc898" name="Default Changelist" comment="ALteração no arquivo de conexão com o banco de dados. Agora o banco é local.&#10;&#10;Implementação da função getTipoUsuario na classe Usuario para verificar se  usuário é administrador">
+      <change afterPath="$PROJECT_DIR$/src/View/LoginUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RecursosHpoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RecursosHpoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/GerenciarRecursos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GerenciarRecursos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ModeloCalendario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ModeloCalendario.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/RecursosHpoa$RecursosHpoa.ic" NAME="RecursosHpoa Coverage Results" MODIFIED="1541685754675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-96523259">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="9" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.21" value="2" />
+          <entry key="project.open.time.22" value="3" />
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.opened" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="151" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="151" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="110" />
+          <entry key="java" value="50447" />
+          <entry key="txt" value="1809" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="50447" />
+          <entry key="PLAIN_TEXT" value="1919" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.checkout.local" value="1" />
+          <entry key="git.branch.create.new" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1166582472">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/RecursosHpoa.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/Sala.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1314">
+              <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+              <folding>
+                <element signature="docComment;method#sqlSalaDuplicada#0;class#Sala#0" />
+                <element signature="method#sqlSalaDuplicada#0;class#Sala#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/UsuarioAdministrador.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="38" column="68" selection-start-line="38" selection-start-column="68" selection-end-line="38" selection-end-column="68" />
+              <folding>
+                <element signature="docComment;method#sqlInsereUsuario#0;class#UsuarioAdministrador#0" />
+                <element signature="method#sqlInsereUsuario#0;class#UsuarioAdministrador#0" />
+                <element signature="docComment;method#cadastrarSala#0;class#UsuarioAdministrador#0" />
+                <element signature="docComment;method#cadastrarEquipamento#0;class#UsuarioAdministrador#0" />
+                <element signature="method#cadastrarEquipamento#0;class#UsuarioAdministrador#0" />
+                <element signature="docComment;method#cadastrarUsuario#0;class#UsuarioAdministrador#0" />
+                <element signature="method#cadastrarUsuario#0;class#UsuarioAdministrador#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>CONECTA</find>
+      <find>pesquisaRecursoDuplicado</find>
+      <find>tabela</find>
+      <find>ModeloTabela tabela</find>
+      <find>jbReservar</find>
+      <find>validaCampos</find>
+      <find>teste</find>
+      <find>atualizarSala</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Interfaces" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Model/TabelaDeHorarios.java" />
+        <option value="$PROJECT_DIR$/src/View/Recurso.java" />
+        <option value="$PROJECT_DIR$/src/View/LabelPadrao.java" />
+        <option value="$PROJECT_DIR$/src/View/CampoTextoPadrao.java" />
+        <option value="$PROJECT_DIR$/src/View/InterfacePadrao.java" />
+        <option value="$PROJECT_DIR$/src/View/BotaoPadrao.java" />
+        <option value="$PROJECT_DIR$/src/View/FramePrincipal.java" />
+        <option value="$PROJECT_DIR$/src/View/InterfaceRecurso.java" />
+        <option value="$PROJECT_DIR$/src/View/InterfacePrincipal.java" />
+        <option value="$PROJECT_DIR$/src/View/Modelos/ModeloCampoTexto.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloOptionPane.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloPainel.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloCampoTexto.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloLabel.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloCampoInteiros.java" />
+        <option value="$PROJECT_DIR$/src/View/CadastroUsuario.java" />
+        <option value="$PROJECT_DIR$/src/Model/Reserva.java" />
+        <option value="$PROJECT_DIR$/src/Model/Data.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloBotao.java" />
+        <option value="$PROJECT_DIR$/src/Controller/Banco.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloDialog.java" />
+        <option value="$PROJECT_DIR$/src/Model/ListaEncadeada.java" />
+        <option value="$PROJECT_DIR$/src/Model/Usuario.java" />
+        <option value="$PROJECT_DIR$/src/Controller/BancoDao.java" />
+        <option value="$PROJECT_DIR$/src/Model/Equipamento.java" />
+        <option value="$PROJECT_DIR$/src/Model/Sala.java" />
+        <option value="$PROJECT_DIR$/src/Model/Recurso.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloTabela.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloScroll.java" />
+        <option value="$PROJECT_DIR$/src/Model/UsuarioAdministrador.java" />
+        <option value="$PROJECT_DIR$/src/View/CadastroSala.java" />
+        <option value="$PROJECT_DIR$/src/Controller/BancoDAO.java" />
+        <option value="$PROJECT_DIR$/src/View/CadastroEquipamento.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloInterface.java" />
+        <option value="$PROJECT_DIR$/src/View/TelaPrincipal.java" />
+        <option value="$PROJECT_DIR$/src/View/ModeloCalendario.java" />
+        <option value="$PROJECT_DIR$/src/View/GerenciarRecursos.java" />
+        <option value="$PROJECT_DIR$/src/View/LoginUsuario.java" />
+        <option value="$PROJECT_DIR$/src/RecursosHpoa.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="24" />
+    <option name="width" value="1366" />
+    <option name="height" value="737" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="RecursosHpoa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ReserveAndTrade" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RecursosHpoa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ReserveAndTrade" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RecursosHpoa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ReserveAndTrade" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RecursosHpoa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ReserveAndTrade" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541689420865" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="View" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/icones" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="RecursosHpoa" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RecursosHpoa" />
+      <module name="projeto" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RecursosHpoa" />
+        <item itemvalue="Application.RecursosHpoa" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2cafea4-c89e-4ac3-a992-e7745cadc898" name="Default Changelist" comment="" />
+      <created>1540416601118</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1540416601118</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interface de cadastro de sala pronta. Basta apenas compilar para testar.">
+      <created>1541078465968</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1541078465970</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interface de cadastro de sala pronta. Basta apenas compilar para testar.&#10;&#10;*Corrigido problema de botões">
+      <created>1541096767490</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1541096767490</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interfaces prontas:&#10;- Cadastro Sala &#10;- Cadastro Equipamento&#10;&#10;*Corrigido problema de botões">
+      <created>1541164048782</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1541164048782</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interfaces prontas:&#10;- Cadastro Sala &#10;- Cadastro Equipamento&#10;&#10;*Corrigido problema de botões">
+      <created>1541183914378</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1541183914391</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interfaces prontas:&#10;- Cadastro Sala &#10;- Cadastro Equipamento&#10;&#10;*Corrigido problema de botões&#10;*Corrigido Dialog: Iniciando centralizado">
+      <created>1541188261447</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1541188261447</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ModeloCalendario pronto.&#10;Usuario fazendo busca por ID.&#10;&#10;&#10;Interface:&#10; - GerenciarRecursos:&#10;     Busca apenas uma sala por id e exibe em uma label:&#10;     &#10;     Implementar:&#10;        Fazer buscar e exibir um equipamento&#10;        Criar uma instancia do calendario &#10;        Botao para fazer uma reserva.">
+      <created>1541202293127</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1541202293127</updated>
+    </task>
+    <task id="LOCAL-00007" summary="ModeloCalendario pronto.&#10;Usuario fazendo busca por ID.&#10;&#10;&#10;Interface:&#10; - GerenciarRecursos:&#10;     Busca apenas uma sala por id e exibe em uma label:&#10;     &#10;     Implementar:&#10;        Fazer buscar e exibir um equipamento&#10;        Criar uma instancia do calendario &#10;        Botao para fazer uma reserva.">
+      <created>1541202405649</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1541202405649</updated>
+    </task>
+    <task id="LOCAL-00008" summary="ModeloCalendario pronto.&#10;Usuario fazendo busca por ID.&#10;&#10;&#10;Interface:&#10; - GerenciarRecursos:&#10;     Busca apenas uma sala por id e exibe em uma label:&#10;     &#10;     Implementar:&#10;        Fazer buscar e exibir um equipamento&#10;        Criar uma instancia do calendario &#10;        Botao para fazer uma reserva.">
+      <created>1541202666852</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1541202666852</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Gerenciador de recursos só falta padronizar a data para criar uma reserva do recurso pesquisado.&#10;&#10;A pesquisa no gerenciador retorna um recurso, seja sala ou equipamento, recurso inxistente quando ele não está ativo ou informa que nada foi encontrado quando o id não existe.">
+      <created>1541220471631</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1541220471631</updated>
+    </task>
+    <task id="LOCAL-00010" summary="ALteração no arquivo de conexão com o banco de dados. Agora o banco é local.&#10;&#10;Implementações:&#10;- método para verificar se usuário atual é administrador&#10;- método para administrador pesquisar um usuário e informa se é administrador">
+      <created>1541266354602</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1541266354602</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Falta implementar a reserva no gerenciador de recursos">
+      <created>1541660648149</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1541660648149</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Gerenciador já trata erros quando um recurso não é selecionado antes de remover, alterar ou até mesmo solicitar reserva.&#10;&#10;Frames de efetuar reserva e ver minhas reservas tambésm estão criados. falta implementar a função reservar.">
+      <created>1541682930339</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1541682930339</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="-4" width="1368" height="773" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24772727" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32919255" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32919255" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39906833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32919255" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32919255" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.32954547" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.21136364" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32919255" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32919255" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39906833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32919255" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32919255" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32954547" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interface de cadastro de sala pronta. Basta apenas compilar para testar." />
+    <MESSAGE value="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interface de cadastro de sala pronta. Basta apenas compilar para testar.&#10;&#10;*Corrigido problema de botões" />
+    <MESSAGE value="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interfaces prontas:&#10;- Cadastro Sala &#10;- Cadastro Equipamento&#10;&#10;*Corrigido problema de botões" />
+    <MESSAGE value="Os modelos criados (Frame, Dialog, Button, Label, TextField) tem o intuíto de facilitar a manutenção da interface, padronizar e ecnomizar código.&#10;&#10;Interfaces prontas:&#10;- Cadastro Sala &#10;- Cadastro Equipamento&#10;&#10;*Corrigido problema de botões&#10;*Corrigido Dialog: Iniciando centralizado" />
+    <MESSAGE value="ModeloCalendario pronto.&#10;Usuario fazendo busca por ID.&#10;&#10;&#10;Interface:&#10; - GerenciarRecursos:&#10;     Busca apenas uma sala por id e exibe em uma label:&#10;     &#10;     Implementar:&#10;        Fazer buscar e exibir um equipamento&#10;        Criar uma instancia do calendario &#10;        Botao para fazer uma reserva." />
+    <MESSAGE value="Gerenciador de recursos só falta padronizar a data para criar uma reserva do recurso pesquisado.&#10;&#10;A pesquisa no gerenciador retorna um recurso, seja sala ou equipamento, recurso inxistente quando ele não está ativo ou informa que nada foi encontrado quando o id não existe." />
+    <MESSAGE value="ALteração no arquivo de conexão com o banco de dados. Agora o banco é local.&#10;&#10;Implementações:&#10;- método para verificar se usuário atual é administrador&#10;- método para administrador pesquisar um usuário e informa se é administrador" />
+    <MESSAGE value="Falta implementar a reserva no gerenciador de recursos" />
+    <MESSAGE value="Gerenciador já trata erros quando um recurso não é selecionado antes de remover, alterar ou até mesmo solicitar reserva.&#10;&#10;Frames de efetuar reserva e ver minhas reservas tambésm estão criados. falta implementar a função reservar." />
+    <option name="LAST_COMMIT_MESSAGE" value="Gerenciador já trata erros quando um recurso não é selecionado antes de remover, alterar ou até mesmo solicitar reserva.&#10;&#10;Frames de efetuar reserva e ver minhas reservas tambésm estão criados. falta implementar a função reservar." />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/View/FramePrincipal.java" />
+    <entry file="file://$PROJECT_DIR$/src/View/InterfacePrincipal.java" />
+    <entry file="file://$PROJECT_DIR$/src/View/InterfaceRecurso.java" />
+    <entry file="file://$PROJECT_DIR$/src/View/Modelos/teste.java" />
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloOptionPane.java" />
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/event/MouseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloPainel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloCampoInteiros.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Reserva.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+          <folding>
+            <element signature="method#temConflito#0;class#Reserva#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloBotao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1405#1406#0" expanded="true" />
+            <element signature="e#1438#1439#0" expanded="true" />
+            <element signature="e#1480#1481#0" expanded="true" />
+            <element signature="e#1513#1514#0" expanded="true" />
+            <element signature="e#1540#1541#0" expanded="true" />
+            <element signature="e#1573#1574#0" expanded="true" />
+            <element signature="e#1609#1610#0" expanded="true" />
+            <element signature="e#1628#1629#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Data.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Banco.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
+          <folding>
+            <element signature="method#encerraConexao#0;class#Banco#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/ListaEncadeada.java" />
+    <entry file="file://$PROJECT_DIR$/src/Model/Recurso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Equipamento.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Usuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getTipoUsuario#0;class#Usuario#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" selection-start-line="15" selection-end-line="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1004#1005#0" expanded="true" />
+            <element signature="e#1070#1071#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloScroll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="17" column="53" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloTabela.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#567#568#0" expanded="true" />
+            <element signature="e#594#595#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/awt/event/ComponentEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="129" column="21" selection-start-line="129" selection-start-column="21" selection-end-line="129" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/CadastroEquipamento.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="87" column="34" lean-forward="true" selection-start-line="87" selection-start-column="34" selection-end-line="87" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#CadastroEquipamento#0;class#CadastroEquipamento#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/CadastroSala.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3402">
+          <caret line="229" column="60" selection-start-line="227" selection-start-column="20" selection-end-line="229" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#CadastroSala#0;class#CadastroSala#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/TelaPrincipal.java" />
+    <entry file="file://$PROJECT_DIR$/src/Controller/BancoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="169" column="8" selection-start-line="169" selection-start-column="8" selection-end-line="169" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#pesquisaRecurso#0;class#BancoDAO#0" />
+            <element signature="method#pesquisaRecurso#0;class#BancoDAO#0" />
+            <element signature="method#pesquisaRecurso#1;class#BancoDAO#0" />
+            <element signature="method#inativarRecurso#0;class#BancoDAO#0" />
+            <element signature="method#atualizaEquipamento#0;class#BancoDAO#0" />
+            <element signature="docComment;method#insereEquipamento#0;class#BancoDAO#0" />
+            <element signature="method#insereEquipamento#0;class#BancoDAO#0" />
+            <element signature="docComment;method#salaDuplicada#0;class#BancoDAO#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ReservarRecurso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloCalendario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/MinhasReservas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="method#MinhasReservas#0;class#MinhasReservas#0" />
+            <element signature="method#fechar#0;class#MinhasReservas#0" />
+            <element signature="class#AcoesInterface#0;class#MinhasReservas#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/ModeloCampoTexto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-182">
+          <caret line="12" selection-start-line="12" selection-end-line="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/GerenciarRecursos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="174" selection-start-line="174" selection-end-line="175" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/LoginUsuario.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2675#2676#0" expanded="true" />
+            <element signature="e#2712#2713#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/TabelaDeHorarios.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RecursosHpoa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Sala.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1314">
+          <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+          <folding>
+            <element signature="docComment;method#sqlSalaDuplicada#0;class#Sala#0" />
+            <element signature="method#sqlSalaDuplicada#0;class#Sala#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/UsuarioAdministrador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="38" column="68" selection-start-line="38" selection-start-column="68" selection-end-line="38" selection-end-column="68" />
+          <folding>
+            <element signature="docComment;method#sqlInsereUsuario#0;class#UsuarioAdministrador#0" />
+            <element signature="method#sqlInsereUsuario#0;class#UsuarioAdministrador#0" />
+            <element signature="docComment;method#cadastrarSala#0;class#UsuarioAdministrador#0" />
+            <element signature="docComment;method#cadastrarEquipamento#0;class#UsuarioAdministrador#0" />
+            <element signature="method#cadastrarEquipamento#0;class#UsuarioAdministrador#0" />
+            <element signature="docComment;method#cadastrarUsuario#0;class#UsuarioAdministrador#0" />
+            <element signature="method#cadastrarUsuario#0;class#UsuarioAdministrador#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>teste:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>scala-sdk-2.12.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>projeto</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>mysql-connector-java-8.0.12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
