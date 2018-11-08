@@ -20,14 +20,15 @@ public class GerenciarRecursos extends ModeloDialog {
     private String txtTitulo                = "Gerenciar Recursos";
     private String txtRotuloCampoPesquisar  = "Pesquisar Recurso...";
     private String txtBotaoPesquisar        = "P";
-    private String txtBotaoReservar         = "Reservar";
+    private String txtBotaoReservar         = "+Reserva";
+    private String txtBotaoReservas         = "Reservas";
     private String txtBotaoNovaSala         = "+Sala";
     private String txtBotaoNovoEquip        = "+Equipamento";
 
     private String txtBotaoRemover          = "Remover";
     private String txtBotaoAlterar          = "Alterar";
     private String txtTituloTabela          = "Tabela de Recursos";
-
+    private String txtErroSelecaoLinha      = "Selecione uma linha antes";
     //Constantes inteiras
     private int larguraDialog       = 700;
     private int alturaDialog        = 500;
@@ -44,19 +45,19 @@ public class GerenciarRecursos extends ModeloDialog {
     //Labels
     private ModeloLabel labelTitulo         = new ModeloLabel(this.txtTitulo, 17, this.larguraDialog, 0,5);
     private ModeloLabel labelTituloTabela   = new ModeloLabel(this.txtTituloTabela, 17, this.larguraDialog, 0,100);
-    //private ModeloLabel labelPesquisa       = new ModeloLabel("", 15, this.larguraDialog, 0, 130);
-
+    private ModeloLabel labelErro           = new ModeloLabel("",15,this.larguraDialog,0,120);
     //Campos de Texto
     private ModeloCampoTexto campoPesquisar = new ModeloCampoTexto(30, this.larguraDialog-50-35, 25,50);
 
     //Botões
     private ModeloBotao jbPesquisar     = new ModeloBotao(this.txtBotaoPesquisar,30,30,this.larguraDialog-55, 50);
-    private ModeloBotao jbReservar      = new ModeloBotao(this.txtBotaoReservar, 30, 100, this.larguraDialog - 125, 450);
-    private ModeloBotao jbCadastrarSala = new ModeloBotao(this.txtBotaoNovaSala, 30, 100, this.larguraDialog - 230, 450);
-    private ModeloBotao jbCadastrarEqui = new ModeloBotao(this.txtBotaoNovoEquip, 30, 100, this.larguraDialog - 335, 450);
+    private ModeloBotao jbReservas      = new ModeloBotao(this.txtBotaoReservas, 30, 100, this.larguraDialog - 125, 450);
+    private ModeloBotao jbReservar      = new ModeloBotao(this.txtBotaoReservar, 30, 100, this.larguraDialog - 230, 450);
+    private ModeloBotao jbCadastrarSala = new ModeloBotao(this.txtBotaoNovaSala, 30, 100, this.larguraDialog - 335, 450);
+    private ModeloBotao jbCadastrarEqui = new ModeloBotao(this.txtBotaoNovoEquip, 30, 100, this.larguraDialog - 440, 450);
 
-    private ModeloBotao jbAlterar       = new ModeloBotao(this.txtBotaoAlterar, 30, 100, this.larguraDialog - 440, 450);
-    private ModeloBotao jbRemover       = new ModeloBotao(this.txtBotaoRemover, 30, 100, this.larguraDialog - 545, 450);
+    private ModeloBotao jbAlterar       = new ModeloBotao(this.txtBotaoAlterar, 30, 100, this.larguraDialog - 545, 450);
+    private ModeloBotao jbRemover       = new ModeloBotao(this.txtBotaoRemover, 30, 100, this.larguraDialog - 650, 450);
 
     //Ações
     private AcoesInterface acoesInterface = new AcoesInterface();
@@ -74,10 +75,11 @@ public class GerenciarRecursos extends ModeloDialog {
         this.add(this.campoPesquisar);
         this.add(this.jbPesquisar);
         this.add(this.labelTituloTabela);
+        this.add(this.labelErro);
 
         //this.add(this.calendario);
         this.add(this.jbReservar);
-
+        this.add(this.jbReservas);
         if(user.getTipo() == 1) {
             this.add(this.jbCadastrarSala);
             this.add(this.jbCadastrarEqui);
@@ -93,6 +95,9 @@ public class GerenciarRecursos extends ModeloDialog {
         this.labelTitulo.centralizarTexto();
         this.labelTituloTabela.setCorCinza();
         this.labelTituloTabela.centralizarTexto();
+        this.labelErro.setCorCinza();
+        this.labelErro.centralizarTexto();
+        this.labelErro.ocultarLabel();
 
         //Campos de preenchimento
         this.campoPesquisar.setRotulo(true, this.txtRotuloCampoPesquisar);
@@ -105,6 +110,7 @@ public class GerenciarRecursos extends ModeloDialog {
         this.jbRemover.addMouseListener(acoesInterface);
         this.jbCadastrarEqui.addMouseListener(acoesInterface);
         this.jbCadastrarSala.addMouseListener(acoesInterface);
+        this.jbReservas.addMouseListener(acoesInterface);
     }
 
     public Object[][] converteObjects(List<Recurso> recursos){
@@ -185,35 +191,46 @@ public class GerenciarRecursos extends ModeloDialog {
                 }
 
             }else if(e.getComponent() == jbAlterar){
-                removeComponent(tabelaCompleta);
-                int id = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
-                int tipo = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 2).toString());
-                String nome     = tabela.getModel().getValueAt(tabela.getSelectedRow(), 1).toString();
+                if(tabela.getSelectedRow() != -1) {
 
-                //Verifica se a linha clicada indica uma sala ou um equipamento
-                if(tipo == 1){
-                    int andar    = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 5).toString());
-                    int corredor = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 6).toString());
-                    int numero   = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 7).toString());
+                    removeComponent(tabelaCompleta);
+                    int id = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
+                    int tipo = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 2).toString());
+                    String nome = tabela.getModel().getValueAt(tabela.getSelectedRow(), 1).toString();
 
-                    CadastroSala alterarSala = new CadastroSala(id, nome, numero, corredor, andar, usuarioLogado);
-                    alterarSala.mostrar();
-                    geraTabela("");
+                    //Verifica se a linha clicada indica uma sala ou um equipamento
+                    if (tipo == 1) {
+                        int andar = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 5).toString());
+                        int corredor = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 6).toString());
+                        int numero = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 7).toString());
+
+                        CadastroSala alterarSala = new CadastroSala(id, nome, numero, corredor, andar, usuarioLogado);
+                        alterarSala.mostrar();
+                        geraTabela("");
+                    } else {
+
+                        String marca = tabela.getModel().getValueAt(tabela.getSelectedRow(), 3).toString();
+                        String modelo = tabela.getModel().getValueAt(tabela.getSelectedRow(), 4).toString();
+
+                        CadastroEquipamento alteraEquipamento = new CadastroEquipamento(id, nome, marca, modelo, usuarioLogado);
+                        alteraEquipamento.mostrar();
+                        geraTabela("");
+                    }
                 }else{
-
-                    String marca    = tabela.getModel().getValueAt(tabela.getSelectedRow(), 3).toString();
-                    String modelo   = tabela.getModel().getValueAt(tabela.getSelectedRow(), 4).toString();
-
-                    CadastroEquipamento alteraEquipamento = new CadastroEquipamento(id, nome, marca, modelo, usuarioLogado);
-                    alteraEquipamento.mostrar();
-                    geraTabela("");
+                    labelErro.setText(txtErroSelecaoLinha);
+                    labelErro.mostrarLabel();
                 }
-
             }else if(e.getComponent() == jbRemover){
                 removeComponent(tabelaCompleta);
-                int id = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
-
-                String msg = usuarioLogado.removerRecurso(id);
+                if(tabela.getSelectedRow() != -1) {
+                    int id = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
+                    String msg = usuarioLogado.removerRecurso(id);
+                    labelErro.setText(msg);
+                    labelErro.mostrarLabel();
+                }else{
+                    labelErro.setText(txtErroSelecaoLinha);
+                    labelErro.mostrarLabel();
+                }
                 geraTabela("");
 
             }else if(e.getComponent() == jbCadastrarEqui){
@@ -226,6 +243,17 @@ public class GerenciarRecursos extends ModeloDialog {
                 CadastroSala sala = new CadastroSala(usuarioLogado);
                 sala.mostrar();
                 geraTabela("");
+            }else if(e.getComponent() == jbReservar){
+                if(tabela.getSelectedRow() != -1) {
+                    ReservarRecurso reservarRecurso = new ReservarRecurso(usuarioLogado);
+                    reservarRecurso.mostrar();
+                }else{
+                    labelErro.setText(txtErroSelecaoLinha);
+                    labelErro.mostrarLabel();
+                }
+            }else if(e.getComponent() == jbReservas){
+                MinhasReservas minhasReservas = new MinhasReservas(usuarioLogado);
+                minhasReservas.mostrar();
             }
 
         }
