@@ -40,4 +40,10 @@ public class Usuario {
     public String getSenha(){return this.senha;}
 
     public int getTipo(){return this.tipo;}
+
+    public boolean pedeTroca(Reserva aSerTrocada) {
+        //TODO: pedir troca em interface
+        //por enquanto sempre nega
+        return false;
+    }
 }
