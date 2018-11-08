@@ -2,6 +2,7 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class ModeloDialog extends JDialog {
 
@@ -17,8 +18,10 @@ public class ModeloDialog extends JDialog {
 
     }
 
-    public void exibirCaixaDialog(){
+    public void mostrar(){
         this.setVisible(true);
     }
+
+    public void ocultar(){this.dispose();}
 
 }

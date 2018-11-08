@@ -10,7 +10,14 @@ public class Sala extends Recurso {
     private int andar, corredor, sala;
 
     public Sala(int id, String n, int a, int c, int s) {
-        super(id, n);
+        super(id, n,1,1);
+        this.andar = a;
+        this.corredor = c;
+        this.sala = s;
+    }
+
+    public Sala(int id, String n, int a, int c, int s,int tipo, int situacaoSala){
+        super(id, n, tipo, situacaoSala);
         this.andar = a;
         this.corredor = c;
         this.sala = s;
@@ -32,86 +39,8 @@ public class Sala extends Recurso {
 
     //--------------------------------------------------------[SQL]
 
-    /**
-     * Apenas insere no banco de dados, sem validar dados.
-     * @return TRUE em caso de inserção válida.
-     */
-    public String sqlInsereSala() {
-        Banco bancoDeDados = new Banco();
-        String txtEquipamentoInserido = "";
-
-        try{
-            if(bancoDeDados.iniciaConexaoComBanco()) {
-                PreparedStatement stm2 = bancoDeDados.getConexao().prepareStatement("INSERT INTO hpoa_recursos VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                stm2.setString(1, this.getNome()); //Nome
-                stm2.setString(2, "1"); //tipo
-                stm2.setString(3, null); //e_marca
-                stm2.setString(4, null); //e_modelo
-                stm2.setString(5, null); //e_garantia
-                stm2.setString(6, Integer.toString(this.getAndar())); //sala_andar
-                stm2.setString(7, Integer.toString(this.getCorredor())); //sala_corredor
-                stm2.setString(8, Integer.toString(this.getSala())); //sala_numero
-                stm2.setString(9,"1"); //recurso ativo
-                stm2.executeUpdate();
-                stm2.close();
-                txtEquipamentoInserido = "Sala cadastrada com sucesso";
-            }
-            bancoDeDados.encerraConexao();
-        }catch (Exception e) {
-            txtEquipamentoInserido = "Problema com o banco de dados";
-            e.printStackTrace();
-        }
-
-        return txtEquipamentoInserido;
-    }
-
-    /**
-     * Uma sala duplicada é definida quando há uma igualdade em
-     * NOME, ANDAR, CORREDOR,
-     * @return O número de salas duplicadas.
-     */
-    private boolean sqlSalaDuplicada(){
-        boolean salaDuplicada = false;
-
-        Banco bancoDeDados = new Banco();
-        String sql = "SELECT * FROM hpoa_recursos WHERE rec_nome = ? AND sala_andar = ? AND sala_corredor = ? AND sala_numero = ?";
-        ResultSet result = null;
-        int numeroLinhas = 0;
-        try {
-            if (bancoDeDados.iniciaConexaoComBanco()) {
-                PreparedStatement stm = bancoDeDados.getConexao().prepareStatement(sql);
-
-                stm.setString(1, this.getNome());
-                stm.setString(2, Integer.toString(this.getAndar()));
-                stm.setString(3, Integer.toString(this.getCorredor()));
-                stm.setString(4, Integer.toString(this.getSala()));
-                result = stm.executeQuery();
-            }
-            while (result.next()){
-                numeroLinhas++;
-            }
-            bancoDeDados.encerraConexao();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        if(numeroLinhas > 0){
-            salaDuplicada = true;
-        }
-
-        return salaDuplicada;
-    }
 
 
-
-    //Aplica todos validadores anteriores
-    public boolean validaSala(){
-        boolean cadastroAutorizado = true;
-        if(this.sqlSalaDuplicada()){
-            cadastroAutorizado = false;
-        }
-        return cadastroAutorizado;
-    }
 
 
 

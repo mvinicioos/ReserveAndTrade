@@ -34,6 +34,22 @@ public class ModeloBotao extends JButton {
 
     }
 
+    public void ocultar(){
+        this.setVisible(false);
+    }
+
+    public void mostrar(){
+        this.setVisible(true);
+    }
+
+    public void inativar(){
+        this.setEnabled(false);
+    }
+
+    public void ativar(){
+        this.setEnabled(true);
+    }
+
 }
 
 

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Date;
 
+import Controller.BancoDAO;
 import Model.Recurso;
 
 public class UsuarioAdministrador extends Usuario {
@@ -25,25 +26,17 @@ public class UsuarioAdministrador extends Usuario {
 
     /***
      * Valida os parâmetros e insere o cadastro da sala no banco.
-     * @param id
      * @param nome
      * @param andar
      * @param corredor
      * @param numeroSala
      * @return
      */
-    public String cadastrarSala(int id, String nome, int andar, int corredor, int numeroSala){
+    public String cadastrarSala(String nome, int andar, int corredor, int numeroSala){
+        BancoDAO bancoDAO = new BancoDAO();
+        String mensagemRetorno;
 
-        Sala novaSala = new Sala(id, nome, andar, corredor, numeroSala);
-        boolean cadastroAutorizado = novaSala.validaSala();
-        String mensagemRetorno = "";
-
-        //Insere no banco
-        if(cadastroAutorizado == true){
-            mensagemRetorno = novaSala.sqlInsereSala();
-        }else{
-            mensagemRetorno = "Sala já existe";
-        }
+        mensagemRetorno = bancoDAO.insereSala(nome,andar,corredor,numeroSala);
 
         return mensagemRetorno;
     }
@@ -51,47 +44,58 @@ public class UsuarioAdministrador extends Usuario {
     /**
      * Valida os parâmetros e insere o parâmetro no banco de dados.
      * Retorna TRUE para o caso de o cadastro estar ok.
-     * @param id
      * @param nome
      * @param marca
      * @param modelo
      * @return
      */
-    public String cadastrarEquipamento(int id, String nome, String marca, String modelo){
+    public String cadastrarEquipamento(String nome, String marca, String modelo){
         String msgRetorno = "";
-        Equipamento novoEquipamento = new Equipamento(id, nome, marca, modelo);
-
-        msgRetorno = novoEquipamento.sqlInsereEquipamento();
+        BancoDAO bancoDAO = new BancoDAO();
+        msgRetorno = bancoDAO.insereEquipamento(nome, marca, modelo);
 
 
         return msgRetorno;
     }
 
-    public boolean inativarRecurso(int id){
-        boolean equipamentoInativado = false;
-        Banco bancoDeDados = new Banco();
-        //Verifica existência
-
-        //Inativa
-        try{
-            if(bancoDeDados.iniciaConexaoComBanco()) {
-                PreparedStatement stm2 = bancoDeDados.getConexao().prepareStatement("" +
-                        "UPDATE hpoa_recursos " +
-                        "SET recurso_ativo = 0 " +
-                        "WHERE rec_id = ? ,");
-                stm2.setInt(1, id);
-
-                stm2.executeUpdate();
-                stm2.close();
-                equipamentoInativado = true;
-            }
-            bancoDeDados.encerraConexao();
-        }catch (Exception e) {
-            e.printStackTrace();
+    public String atualizarSala(int id, String nome, int andar, int corredor, int numeroSala){
+        String msgRetorno = "";
+        BancoDAO bancoDAO = new BancoDAO();
+        if(bancoDAO.atualizaSala(id, nome, andar, corredor, numeroSala)){
+            msgRetorno = "Dados Atualizados";
+        }else{
+            msgRetorno = "Falha ao atualizar dados";
         }
 
-        return equipamentoInativado;
+        return msgRetorno;
     }
+
+    public String atualizarEquipamento(int id, String nome, String marca, String modelo){
+        String msgRetorno = "";
+        BancoDAO bancoDAO = new BancoDAO();
+        if(bancoDAO.atualizaEquipamento(id, nome,marca,modelo)){
+            msgRetorno = "Dados Atualizados";
+        }else{
+            msgRetorno = "Falha ao atualizar dados";
+        }
+
+        return msgRetorno;
+    }
+
+    public String removerRecurso(int id){
+        String msgRetorno = "";
+        System.out.println("user remover rec");
+        BancoDAO bancoDAO = new BancoDAO();
+
+        if(bancoDAO.inativarRecurso(id)){
+            msgRetorno = "Recurso removido";
+        }else{
+            msgRetorno = "Falha ao remover recurso";
+        }
+        return msgRetorno;
+
+    }
+
 
 
     //----------------------------------------------- [PRIVILÉGIOS SOBRE USUÁRIOS]
