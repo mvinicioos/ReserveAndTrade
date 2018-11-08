@@ -24,13 +24,13 @@ public class GerenciarRecursos extends ModeloDialog {
     private String txtBotaoReservas         = "Reservas";
     private String txtBotaoNovaSala         = "+Sala";
     private String txtBotaoNovoEquip        = "+Equipamento";
-    private String txtsessaoUsuario         = "Olá, ";
+
     private String txtBotaoRemover          = "Remover";
     private String txtBotaoAlterar          = "Alterar";
     private String txtTituloTabela          = "Tabela de Recursos";
     private String txtErroSelecaoLinha      = "Selecione uma linha antes";
     //Constantes inteiras
-    private int larguraDialog       = 750;
+    private int larguraDialog       = 700;
     private int alturaDialog        = 500;
 
     //Tabelas
@@ -38,21 +38,19 @@ public class GerenciarRecursos extends ModeloDialog {
     private final int larguraTabela = this.larguraDialog - 50;
     private final int alturaTabela = 250;
     private final int posxTabela = 25;
-    private final int posyTabela = 170;
+    private final int posyTabela = 150;
     private ModeloTabela tabela;
     private ModeloScroll tabelaCompleta;
 
     //Labels
-    private ModeloLabel labelSessaoUsuario  = new ModeloLabel(txtsessaoUsuario+"teste "+usuarioLogado.getNome(),14,200,this.larguraDialog-200,3);
-    private ModeloLabel labelTitulo         = new ModeloLabel(this.txtTitulo, 17, this.larguraDialog, 0,20);
-    private ModeloLabel labelTituloTabela   = new ModeloLabel(this.txtTituloTabela, 17, this.larguraDialog, 0,120);
-    private ModeloLabel labelErro           = new ModeloLabel("",15,this.larguraDialog,0,140);
-
+    private ModeloLabel labelTitulo         = new ModeloLabel(this.txtTitulo, 17, this.larguraDialog, 0,5);
+    private ModeloLabel labelTituloTabela   = new ModeloLabel(this.txtTituloTabela, 17, this.larguraDialog, 0,100);
+    private ModeloLabel labelErro           = new ModeloLabel("",15,this.larguraDialog,0,120);
     //Campos de Texto
-    private ModeloCampoTexto campoPesquisar = new ModeloCampoTexto(30, this.larguraDialog-50-35, 25,70);
+    private ModeloCampoTexto campoPesquisar = new ModeloCampoTexto(30, this.larguraDialog-50-35, 25,50);
 
     //Botões
-    private ModeloBotao jbPesquisar     = new ModeloBotao(this.txtBotaoPesquisar,30,30,this.larguraDialog-55, 70);
+    private ModeloBotao jbPesquisar     = new ModeloBotao(this.txtBotaoPesquisar,30,30,this.larguraDialog-55, 50);
     private ModeloBotao jbReservas      = new ModeloBotao(this.txtBotaoReservas, 30, 100, this.larguraDialog - 125, 450);
     private ModeloBotao jbReservar      = new ModeloBotao(this.txtBotaoReservar, 30, 100, this.larguraDialog - 230, 450);
     private ModeloBotao jbCadastrarSala = new ModeloBotao(this.txtBotaoNovaSala, 30, 100, this.larguraDialog - 335, 450);
@@ -70,10 +68,9 @@ public class GerenciarRecursos extends ModeloDialog {
 
     //Contrutor
     public GerenciarRecursos(Usuario user){
-        super("Gerenciar Recursos", 750, 500);
+        super("Gerenciar Recursos", 700, 500);
 
         //Adicionando ao JDialog
-        this.add(labelSessaoUsuario);
         this.add(this.labelTitulo);
         this.add(this.campoPesquisar);
         this.add(this.jbPesquisar);
@@ -94,8 +91,6 @@ public class GerenciarRecursos extends ModeloDialog {
 
 
         //Labels
-        this.labelSessaoUsuario.setCorVerde();
-        this.labelSessaoUsuario.centralizarTexto();
         this.labelTitulo.setCorCinza();
         this.labelTitulo.centralizarTexto();
         this.labelTituloTabela.setCorCinza();
