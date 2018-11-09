@@ -9,11 +9,11 @@ public class RecursosHpoa {
 
         LoginUsuario loginUsuario = new LoginUsuario();
 
-        loginUsuario.mostrar();
+        //loginUsuario.mostrar();
 
 
 
-        //ger.mostrar();
+        ger.mostrar();
         //sala.mostrar();
         //equip.mostrar();
         //sala.mostrar();

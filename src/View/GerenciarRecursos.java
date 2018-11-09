@@ -254,6 +254,8 @@ public class GerenciarRecursos extends ModeloDialog {
             }else if(e.getComponent() == jbReservas){
                 MinhasReservas minhasReservas = new MinhasReservas(usuarioLogado);
                 minhasReservas.mostrar();
+
+
             }
 
         }

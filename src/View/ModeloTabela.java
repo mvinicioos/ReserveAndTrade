@@ -18,7 +18,6 @@ public class ModeloTabela extends JTable {
         this.setBorder(null);
         this.setOpaque(false);
         this.getTableHeader().setFont(new Font("Arial",Font.PLAIN , 15));
-
         this.setFont(new Font("Arial",Font.PLAIN, 14));
         this.setForeground(Color.decode(this.corFonteCelulas));
 

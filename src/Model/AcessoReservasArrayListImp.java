@@ -24,7 +24,7 @@ public class AcessoReservasArrayListImp implements AcessoReservas {
     public List<Data> getReservasByRecurso(Recurso r) {
         List<Data> current = new ArrayList<>();
         for (Reserva recurso : this.reservas) {
-            if (recurso.getRecursoReservado().getCodigoDeId() == r.getCodigoDeId()) {
+            if (recurso.getRecursoReservado().getId() == r.getId()) {
                 current.add(recurso.getHorario());
             }
         }
