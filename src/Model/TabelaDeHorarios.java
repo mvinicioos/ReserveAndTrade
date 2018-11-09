@@ -18,9 +18,7 @@ public class TabelaDeHorarios {
         }
         catch (ConflitoHorarioException e) {
             this.espera.addLast(e.getPedinte());
-            if (e.getConflitante().getReservante().pedeTroca(e.getPedinte())) {
-                this.fazTroca(e.getConflitante(), e.getPedinte());
-            }
+            e.getConflitante().getReservante().pedeTroca(e.getPedinte());
         }
     }
 
