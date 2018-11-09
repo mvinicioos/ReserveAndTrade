@@ -1,6 +1,12 @@
 package Model;
 
+import Controller.Banco;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
     private int identificacao;
@@ -40,10 +46,28 @@ public class Usuario {
     public String getSenha(){return this.senha;}
 
     public int getTipo(){return this.tipo;}
+	
+	public boolean pedeTroca(Reserva aSerTrocada) {
+	//TODO: pedir troca em interface
+	//por enquanto sempre nega
+	return false;
+	}
+    /**
+     * Verifica se o próprio usuário é administrador
+     * @return
+     */
+    public boolean getTipoUsuario(){
+        boolean tipoAdministrador = false;
 
-    public boolean pedeTroca(Reserva aSerTrocada) {
-        //TODO: pedir troca em interface
-        //por enquanto sempre nega
-        return false;
+        if(this.getTipo() == 1){
+            tipoAdministrador = true;
+        }
+
+        return tipoAdministrador;
     }
+
+
+
+
+
 }
