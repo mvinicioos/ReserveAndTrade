@@ -1,5 +1,8 @@
 package View;
 
+import Controller.BancoDAO;
+import Model.Usuario;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -30,8 +33,8 @@ public class LoginUsuario extends ModeloDialog {
     private ModeloLabel labelMsgErro = new ModeloLabel("Usuário ou senha incorretos", 14, larguraDialog, 0, 135);
 
     //botoes
-    private ModeloBotao jbLogin = new ModeloBotao(this.txtJbLogin, 30, 100, larguraDialog - 125, 155);
-    private ModeloBotao jbCadastrar = new ModeloBotao(this.txtJbCadastrar, 30, 100, larguraDialog - 230, 155);
+    private ModeloBotao jbLogin = new ModeloBotao(this.txtJbLogin, 30, 100, larguraDialog - 125, 158);
+    private ModeloBotao jbCadastrar = new ModeloBotao(this.txtJbCadastrar, 30, 100, larguraDialog - 230, 158);
 
     //Campos
     private ModeloCampoTexto campoEmail = new ModeloCampoTexto(30, larguraDialog - 50, 25, 60);
@@ -68,6 +71,9 @@ public class LoginUsuario extends ModeloDialog {
         this.labelMsgErro.setCorCinza();
         this.labelMsgErro.ocultarLabel();
 
+        AcoesInterface acoesInterface = new AcoesInterface();
+
+        this.jbLogin.addMouseListener(acoesInterface);
 
     }
 
@@ -75,12 +81,31 @@ public class LoginUsuario extends ModeloDialog {
         this.setVisible(true);
     }
 
+    public  void loginRealizado(ModeloDialog frame){
+        this.dispose();
+        frame.mostrar();
+    }
     private class AcoesInterface implements MouseListener {
 
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
+            if(e.getComponent() == jbLogin){
+                if(campoEmail.getText().equals("") || campoSenha.getText().toString().equals("")){
+                    labelMsgErro.setText("Preencha os campos para fazer login");
+                    labelMsgErro.setVisible(true);
+                }else{
+                    BancoDAO bancoDAO = new BancoDAO();
+                    Usuario usuario = bancoDAO.login(campoEmail.getText(), campoSenha.getText());
+                    if(usuario == null){
+                        labelMsgErro.setText("Usuário ou senha incorretos");
+                        labelMsgErro.setVisible(true);
+                    }else {
+                        GerenciarRecursos gerenciarRecursos = new GerenciarRecursos(usuario);
+                        loginRealizado(gerenciarRecursos);
+                    }
+                }
+            }
         }
 
         @Override

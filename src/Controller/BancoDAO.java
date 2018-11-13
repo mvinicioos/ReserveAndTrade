@@ -1,8 +1,6 @@
 package Controller;
 
-import Model.Equipamento;
-import Model.Recurso;
-import Model.Sala;
+import Model.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -167,6 +165,7 @@ public class BancoDAO {
         PreparedStatement stm = null;
         boolean alteracaoFeita = false;
         String sql = "UPDATE hpoa_recursos SET rec_nome = ? , sala_andar = ? , sala_corredor = ? , sala_numero = ? WHERE rec_id = ?";
+
         try {
             bancoDeDados.iniciaConexaoComBanco();
             stm = bancoDeDados.getConexao().prepareStatement(sql);
@@ -295,6 +294,59 @@ public class BancoDAO {
             txtEquipamentoInserido = "Sala já existe no banco de dados";
         }
         return txtEquipamentoInserido;
+    }
+
+
+    public Usuario login(String email, String senha){
+        Banco bancoDeDados = new Banco();
+        bancoDeDados.iniciaConexaoComBanco();
+        ResultSet rs = null;
+        PreparedStatement stm = null;
+        String sql;
+        sql = "SELECT * FROM hpoa_usuarios WHERE usuario_email = ? AND usuario_senha = ?";
+        Usuario usuario;
+        UsuarioAdministrador usuarioAdministrador;
+        int idU = 0;
+        String nomeU = "";
+        String sobrenomeU = "";
+        String emailU = "";
+        String senhaU = "";
+        int tipoU = 0;
+        int contador = 0;
+
+        try {
+            stm = bancoDeDados.getConexao().prepareStatement(sql);
+
+            stm.setString(1, email);
+            stm.setString(2, senha);
+            rs = stm.executeQuery();
+
+
+
+            while (rs.next()){
+                        contador++;
+                        idU = rs.getInt("usuario_id");
+                        nomeU = rs.getString("usuario_nome");
+                        sobrenomeU = rs.getString("usuario_sobrenome");
+                        emailU = rs.getString("usuario_email");
+                        senhaU = rs.getString("usuario_senha");
+                        tipoU = rs.getInt("usuario_tipo");
+
+            }
+
+            stm.close();
+            rs.close();
+            bancoDeDados.encerraConexao();
+            if(contador > 0) {
+                return usuario = new Usuario(idU, nomeU, sobrenomeU, emailU, senhaU, tipoU);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+        return null;
+
     }
 
 

@@ -142,9 +142,9 @@ public class CadastroSala extends ModeloDialog {
     }
 
 
-    public boolean validaCampos() {
+    public boolean validaCampos(boolean cadastrar) {
         boolean validos = true;
-        if((campoIdentificacao.getText().equals(txtNumeroSala)) && (campoCorredor.getText().equals(txtCorredorSala)) && (campoAndar.getText().equals(txtAndarSala)) && (campoNome.getText().equals(txtNomeSala))) {
+        if(cadastrar){
             if (campoNome.getText().equals(txtNomeSala) || campoNome.getText().equals("")) {
                 campoNome.setRotulo(txtNomeSala, true);
                 validos = false;
@@ -163,7 +163,8 @@ public class CadastroSala extends ModeloDialog {
         return validos;
     }
     private class ValidaFormulario implements MouseListener{
-
+        private boolean flagCadastrar = true;
+        private boolean flagAlterar = false;
         @Override
         public void mouseClicked(MouseEvent e) {
             String mensagem = "";
@@ -194,7 +195,7 @@ public class CadastroSala extends ModeloDialog {
                 campoIdentificacao.setCorFontPadrao();
 
             } else if (e.getComponent() == jbCadastrar) {
-                if(validaCampos()) {
+                if(validaCampos(flagCadastrar)) {
 
                     //Solicita cadastro
                     mensagem = adm.cadastrarSala(
@@ -217,8 +218,7 @@ public class CadastroSala extends ModeloDialog {
 
             }else if(e.getComponent() == jbAlterar){
                 String msg;
-                System.out.println(validaCampos());
-                if(validaCampos()){
+                if(validaCampos(flagAlterar)){
                     msg = adm.atualizarSala(atualizarIdUpdate,
                             campoNome.getText(),
                             Integer.parseInt(campoAndar.getText()),

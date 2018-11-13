@@ -25,15 +25,7 @@ public class ModeloTabela extends JTable {
 
     }
 
-    public boolean getStatus(){return this.tabelaAtiva; }
-    public void inverteStatus(){
-        System.out.println("Antes: "+this.tabelaAtiva);
-        if(this.tabelaAtiva == false){
-            this.tabelaAtiva = true;
-        }
-        System.out.println("Antes: "+this.tabelaAtiva);
 
-    }
 
     public Object[][] converterObject(List<Recurso> recursos){
         Object[][] objects = new Object[recursos.size()][];

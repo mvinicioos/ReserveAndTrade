@@ -12,9 +12,8 @@ import java.util.List;
 public class GerenciarRecursos extends ModeloDialog {
     UsuarioAdministrador usuarioLogado = new UsuarioAdministrador(1,"a","a","teste@jjj.com","123",1);
     BancoDAO dao = new BancoDAO();
-
-
-
+    //Inicia tabela de horários
+    TabelaDeHorarios tabelaDeHorarios = new TabelaDeHorarios();
     //Mensagens
     private String txtTituloBarra           = "Gerenciador de Recursos";
     private String txtTitulo                = "Gerenciar Recursos";
@@ -87,7 +86,7 @@ public class GerenciarRecursos extends ModeloDialog {
             this.add(this.jbRemover);
         }
 
-        this.geraTabela("");
+        this.gerarTabela("");
 
 
         //Labels
@@ -112,8 +111,7 @@ public class GerenciarRecursos extends ModeloDialog {
         this.jbCadastrarSala.addMouseListener(acoesInterface);
         this.jbReservas.addMouseListener(acoesInterface);
     }
-
-    public Object[][] converteObjects(List<Recurso> recursos){
+    public Object[][] gerarDadosTabela(List<Recurso> recursos){
         Object[][] objects = new Object[recursos.size()][];
 
         for(int i = 0; i < recursos.size(); i++){
@@ -133,13 +131,15 @@ public class GerenciarRecursos extends ModeloDialog {
     public void removeComponent(Component component){
         this.remove(component);
     }
-    public void geraTabela(String pesquisar){
+
+    public void gerarTabela(String pesquisar){
         //Efetua nova pesquisa
         List<Recurso> novaPesquisa = new ArrayList<>();
 
+
         novaPesquisa = dao.pesquisaRecurso(pesquisar);
         Object[][] novoObjects = new Object[novaPesquisa.size()][];
-        novoObjects = converteObjects(novaPesquisa);
+        novoObjects = gerarDadosTabela(novaPesquisa);
 
         //Monta nova tabela
         tabela = new ModeloTabela(novoObjects, colunasRecursos);
@@ -151,26 +151,38 @@ public class GerenciarRecursos extends ModeloDialog {
     public void addComponent(Component component){
         this.add(component);
     }
-    public int calculaAlturaTabela(Object[][] objects){
-        int altura = 0;
-        int alturaLinha = 15;
-        if(objects.length != 0) {
-            if (objects.length * alturaLinha > alturaTabela) {
-                altura = alturaTabela;
-            }else{
-                altura = objects.length*alturaLinha;
-            }
-        }else {
-            altura = alturaLinha;
-        }
-
-        return altura;
-    }
-
+/*
     private class AcoesInterface implements MouseListener{
+        private int id;
+        private int tipo;
+        private String nome;
+        private int andar;
+        private int corredor;
+        private int numero;
+        private String marca;
+        private String modelo;
+        private int situacao;
 
         @Override
         public void mouseClicked(MouseEvent e) {
+
+            //Sempre guarda as informações da linha clicada visando um possível uso
+            if(tabela.getSelectedRow() != -1) {
+                this.tipo       = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 2).toString());
+                this.id         = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
+                this.nome       = tabela.getModel().getValueAt(tabela.getSelectedRow(), 1).toString();
+
+                if(this.tipo == 0){
+                    this.marca      = tabela.getModel().getValueAt(tabela.getSelectedRow(), 3).toString();
+                    this.modelo     = tabela.getModel().getValueAt(tabela.getSelectedRow(), 4).toString();
+                }else{
+                    this.andar      = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 5).toString());
+                    this.corredor   = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 6).toString());
+                    this.numero     = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 7).toString());
+                }
+
+
+            }
 
             if(e.getComponent() == campoPesquisar){
                 //Limpar campo de pesquisa
@@ -183,38 +195,172 @@ public class GerenciarRecursos extends ModeloDialog {
                 removeComponent(tabelaCompleta);
 
                 //Validação do campo pesquisa
-                if(campoPesquisar.getText().equals(txtRotuloCampoPesquisar)){
-                    campoPesquisar.setRotulo(txtRotuloCampoPesquisar,true);
+                if(campoPesquisar.getText().equals(txtRotuloCampoPesquisar) || campoPesquisar.getText().equals("")){
+                    removeComponent(tabelaCompleta);
+                    gerarTabela("");
+                }else{
+                    gerarTabela(campoPesquisar.getText());
+                }
+
+            }else if(e.getComponent() == jbAlterar){
+                if(tabela.getSelectedRow() != -1) {
+                    //Cria uma instancia do recurso
+                    if (tipo == 1) {
+                        CadastroSala alterarSala = new CadastroSala(id, nome, numero, corredor, andar, usuarioLogado);
+                        alterarSala.mostrar();
+                        gerarTabela("");
+                    } else {
+                        CadastroEquipamento alteraEquipamento = new CadastroEquipamento(id, nome, marca, modelo, usuarioLogado);
+                        alteraEquipamento.mostrar();
+                        gerarTabela("");
+                    }
+
 
                 }else{
-                    geraTabela(campoPesquisar.getText());
+                    labelErro.setText(txtErroSelecaoLinha);
+                    labelErro.mostrarLabel();
+                }
+            }else if(e.getComponent() == jbRemover){
+                removeComponent(tabelaCompleta);
+                if(tabela.getSelectedRow() != -1) {
+                    int id = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
+                    String msg = usuarioLogado.removerRecurso(id);
+                    labelErro.setText(msg);
+                    labelErro.mostrarLabel();
+                }else{
+                    labelErro.setText(txtErroSelecaoLinha);
+                    labelErro.mostrarLabel();
+                }
+                gerarTabela("");
+
+            }else if(e.getComponent() == jbCadastrarEqui){
+                removeComponent(tabelaCompleta);
+                CadastroEquipamento equipamento = new CadastroEquipamento(usuarioLogado);
+                equipamento.mostrar();
+                gerarTabela("");
+            }else if(e.getComponent() == jbCadastrarSala){
+                removeComponent(tabelaCompleta);
+                CadastroSala sala = new CadastroSala(usuarioLogado);
+                sala.mostrar();
+                gerarTabela("");
+            }else if(e.getComponent() == jbReservar){
+                ReservarRecurso reservarRecurso;
+                //Certifica de que uma linha da tabela foi selecionada
+                if(tabela.getSelectedRow() != -1) {
+                    if(tipo == 1){
+                        Sala sala = new Sala(id,nome,andar,corredor,numero,tipo,1);
+                        reservarRecurso = new ReservarRecurso(usuarioLogado, sala, tabelaDeHorarios);
+
+                    }else{
+                        Equipamento equipamento = new Equipamento(id,nome,marca,modelo,tipo,1);
+                        reservarRecurso = new ReservarRecurso(usuarioLogado, equipamento, tabelaDeHorarios);
+                    }
+
+
+                    reservarRecurso.mostrar();
+
+                }else{
+                    labelErro.setText(txtErroSelecaoLinha);
+                    labelErro.mostrarLabel();
+                }
+            }else if(e.getComponent() == jbReservas){
+                MinhasReservas minhasReservas = new MinhasReservas(usuarioLogado);
+                minhasReservas.mostrar();
+            }
+
+
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+}
+*/
+
+    private class AcoesInterface implements MouseListener{
+        private int id;
+        private int tipo;
+        private String nome;
+        private int andar;
+        private int corredor;
+        private int numero;
+        private String marca;
+        private String modelo;
+        private int situacao;
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+            //Sempre guarda as informações da linha clicada visando um possível uso
+            if(tabela.getSelectedRow() != -1) {
+                this.tipo       = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 2).toString());
+                this.id         = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
+                this.nome       = tabela.getModel().getValueAt(tabela.getSelectedRow(), 1).toString();
+
+                if(this.tipo == 0){
+                    this.marca      = tabela.getModel().getValueAt(tabela.getSelectedRow(), 3).toString();
+                    this.modelo     = tabela.getModel().getValueAt(tabela.getSelectedRow(), 4).toString();
+                }else{
+                    this.andar      = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 5).toString());
+                    this.corredor   = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 6).toString());
+                    this.numero     = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 7).toString());
+                }
+
+
+            }
+
+                    if(e.getComponent() == campoPesquisar){
+                //Limpar campo de pesquisa
+                if(campoPesquisar.getText().equals(txtRotuloCampoPesquisar)){
+                    campoPesquisar.limparCampo(txtRotuloCampoPesquisar);
+                    campoPesquisar.setCorFontPadrao();
+                }
+            }else if(e.getComponent() == jbPesquisar) {
+                //Remove tabela
+                removeComponent(tabelaCompleta);
+
+                //Validação do campo pesquisa
+                if(campoPesquisar.getText().equals(txtRotuloCampoPesquisar)){
+                    //campoPesquisar.setRotulo(txtRotuloCampoPesquisar,true);
+                    labelErro.setVisible(false);
+                    gerarTabela("");
+                }else{
+                    gerarTabela(campoPesquisar.getText());
                 }
 
             }else if(e.getComponent() == jbAlterar){
                 if(tabela.getSelectedRow() != -1) {
 
                     removeComponent(tabelaCompleta);
-                    int id = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 0).toString());
-                    int tipo = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 2).toString());
-                    String nome = tabela.getModel().getValueAt(tabela.getSelectedRow(), 1).toString();
 
                     //Verifica se a linha clicada indica uma sala ou um equipamento
                     if (tipo == 1) {
-                        int andar = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 5).toString());
-                        int corredor = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 6).toString());
-                        int numero = Integer.parseInt(tabela.getModel().getValueAt(tabela.getSelectedRow(), 7).toString());
-
                         CadastroSala alterarSala = new CadastroSala(id, nome, numero, corredor, andar, usuarioLogado);
                         alterarSala.mostrar();
-                        geraTabela("");
+                        gerarTabela("");
                     } else {
-
-                        String marca = tabela.getModel().getValueAt(tabela.getSelectedRow(), 3).toString();
-                        String modelo = tabela.getModel().getValueAt(tabela.getSelectedRow(), 4).toString();
 
                         CadastroEquipamento alteraEquipamento = new CadastroEquipamento(id, nome, marca, modelo, usuarioLogado);
                         alteraEquipamento.mostrar();
-                        geraTabela("");
+                        gerarTabela("");
                     }
                 }else{
                     labelErro.setText(txtErroSelecaoLinha);
@@ -231,22 +377,34 @@ public class GerenciarRecursos extends ModeloDialog {
                     labelErro.setText(txtErroSelecaoLinha);
                     labelErro.mostrarLabel();
                 }
-                geraTabela("");
+                gerarTabela("");
 
             }else if(e.getComponent() == jbCadastrarEqui){
                 removeComponent(tabelaCompleta);
                 CadastroEquipamento equipamento = new CadastroEquipamento(usuarioLogado);
                 equipamento.mostrar();
-                geraTabela("");
+                gerarTabela("");
             }else if(e.getComponent() == jbCadastrarSala){
                 removeComponent(tabelaCompleta);
                 CadastroSala sala = new CadastroSala(usuarioLogado);
                 sala.mostrar();
-                geraTabela("");
+                gerarTabela("");
             }else if(e.getComponent() == jbReservar){
+                ReservarRecurso reservarRecurso;
+                //Certifica de que uma linha da tabela foi selecionada
                 if(tabela.getSelectedRow() != -1) {
-                    ReservarRecurso reservarRecurso = new ReservarRecurso(usuarioLogado);
+                    if(tipo == 1){
+                        Sala sala = new Sala(id,nome,andar,corredor,numero,tipo,1);
+                        reservarRecurso = new ReservarRecurso(usuarioLogado, sala, tabelaDeHorarios);
+
+                    }else{
+                        Equipamento equipamento = new Equipamento(id,nome,marca,modelo,tipo,1);
+                        reservarRecurso = new ReservarRecurso(usuarioLogado, equipamento, tabelaDeHorarios);
+                    }
+
+
                     reservarRecurso.mostrar();
+
                 }else{
                     labelErro.setText(txtErroSelecaoLinha);
                     labelErro.mostrarLabel();

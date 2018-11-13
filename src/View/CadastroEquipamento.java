@@ -116,10 +116,11 @@ public class CadastroEquipamento extends ModeloDialog{
 
     }
 
-    public boolean validaFormulario(){
+    public boolean validaFormulario(boolean cadastrar){
         boolean formValidado = true;
         //Validação dos campos
-        if(campoNome.getText().equals(txtNomeEquip) && campoMarca.getText().equals(txtMarcaEquip) && campoModelo.getText().equals(txtModeloEquip)) {
+        //if(campoNome.getText().equals(txtNomeEquip) && campoMarca.getText().equals(txtMarcaEquip) && campoModelo.getText().equals(txtModeloEquip)) {
+        if(cadastrar) {
             if (campoNome.getText().equals(txtNomeEquip) || campoNome.getText().equals("")) {
                 campoNome.setRotulo(txtNomeEquip, true);
                 formValidado = false;
@@ -131,16 +132,19 @@ public class CadastroEquipamento extends ModeloDialog{
                 formValidado = false;
             }
         }
+        //}
         return formValidado;
     }
 
     private class ValidaFormulario implements MouseListener{
-
+        private boolean flagAlterar = false;
+        private boolean flagCadastrar = true;
         @Override
         public void mouseClicked(MouseEvent e) {
             String mensagem = "";
 
             //Validação dos campos
+
             if (e.getComponent() == campoNome) {
                 campoNome.limparCampo(txtNomeEquip);
                 campoNome.setCorFontPadrao();
@@ -160,7 +164,7 @@ public class CadastroEquipamento extends ModeloDialog{
                 campoModelo.setCorFontPadrao();
 
             } else if (e.getComponent() == jbCadastrar) {
-                 if(validaFormulario()){
+                 if(validaFormulario(flagCadastrar)){
                     //Inserir no banco de dados
 
                     //Administrador da sessão logada efetua o cadastro da sala
@@ -180,7 +184,7 @@ public class CadastroEquipamento extends ModeloDialog{
                     campoModelo.setRotulo(true, txtModeloEquip);
                 }
             }else if(e.getComponent() == jbAlterar){
-                if(validaFormulario()){
+                if(validaFormulario(flagAlterar)){
                     txtNomeEquip = campoNome.getText();
                     txtMarcaEquip = campoMarca.getText();
                     txtModeloEquip = campoModelo.getText();
