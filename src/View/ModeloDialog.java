@@ -17,6 +17,7 @@ public class ModeloDialog extends JDialog {
         this.setLocationRelativeTo(null);
 
     }
+    
 
     public void mostrar(){
         this.setVisible(true);
